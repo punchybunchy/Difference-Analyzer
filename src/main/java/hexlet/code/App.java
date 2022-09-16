@@ -15,19 +15,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 0.1",
         description = "Compares two configuration files and shows a difference.")
 
-public class App implements Callable<Integer> {
+public final class App implements Callable<Integer> {
 
     @Option(names = { "-f", "--format" }, paramLabel = "format",
             description = "output format [default: stylish]")
-    String format;
+    private String format;
 
-    @Parameters(paramLabel = "filepath1", defaultValue = "/home/tyoma/app/src/main/resources/filepath1.json",
+    @Parameters(paramLabel = "filepath1", defaultValue = "./src/main/resources/filepath1.json",
             description = "path to first file")
-    String filepath1;
+    private String filepath1;
 
-    @Parameters(paramLabel = "filepath2", defaultValue = "/home/tyoma/app/src/main/resources/filepath2.json",
+    @Parameters(paramLabel = "filepath2", defaultValue = "./src/main/resources/filepath2.json",
             description = "path to second file")
-    String filepath2;
+    private String filepath2;
+
+    public App() {
+    }
 
     public static void main(String[] args) {
         int exitCode = new CommandLine(new App()).execute(args);
@@ -36,15 +39,19 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws IOException {
 
-        Path path1 = Paths.get(filepath1).toAbsolutePath();
-        Path path2 = Paths.get(filepath2).toAbsolutePath();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map1 = objectMapper.readValue(path1.toFile(), new TypeReference<>() {});
-        Map<String, Object> map2 = objectMapper.readValue(path2.toFile(), new TypeReference<>() {});
+        Map<String, Object> map1 = convertJsonFileToMap(filepath1);
+        Map<String, Object> map2 = convertJsonFileToMap(filepath2);
 
         String diffResult = Differ.generate(map1, map2);
         System.out.println(diffResult);
+        System.out.println(format);
         return 0;
+    }
+
+    public static Map<String, Object> convertJsonFileToMap(String filepath) throws IOException {
+        Path path = Paths.get(filepath).toAbsolutePath();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> map = objectMapper.readValue(path.toFile(), new TypeReference<>() { });
+        return map;
     }
 }
