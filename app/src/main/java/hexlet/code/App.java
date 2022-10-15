@@ -15,16 +15,17 @@ import java.util.concurrent.Callable;
 public final class App implements Callable<Integer> {
 
     @Option(names = { "-f", "--format" }, paramLabel = "format",
+            defaultValue = "stylish",
             description = "output format [default: stylish]")
     private String format;
 
     @Parameters(paramLabel = "filepath1",
-            defaultValue = "./src/main/resources/file1.yaml",
+            defaultValue = "./src/main/resources/file3.yaml",
             description = "path to first file")
     private String filepath1;
 
     @Parameters(paramLabel = "filepath2",
-            defaultValue = "./src/main/resources/file2.yaml",
+            defaultValue = "./src/main/resources/file4.yaml",
             description = "path to second file")
     private String filepath2;
 

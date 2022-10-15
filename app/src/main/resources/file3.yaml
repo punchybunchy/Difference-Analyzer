@@ -1,0 +1,7 @@
+setting1 : "Some value"
+setting2 : [200, 300, 400]
+setting3 : true
+key1 : value1
+id : 45
+default : null
+checked : false

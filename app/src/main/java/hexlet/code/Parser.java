@@ -37,7 +37,8 @@ public class Parser {
             ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
             Map<String, Object> map = objectMapper.readValue(file, new TypeReference<>() { });
             return map;
+        } else {
+            throw new Exception("Check if your file path is correct");
         }
-        throw new Exception("Check if your file path is correct");
     }
 }
