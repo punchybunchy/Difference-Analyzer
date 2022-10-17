@@ -5,3 +5,4 @@ key1 : value1
 id : 45
 default : null
 checked : false
+obj1 : {nestedKey : "big_value", isNested : false}

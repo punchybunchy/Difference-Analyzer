@@ -39,7 +39,8 @@ public final class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
 
-        String diffResult = Differ.generate(Parser.parserFilesToMap(filepath1), Parser.parserFilesToMap(filepath2));
+        String diffResult = Formatter.formatToStylish(Differ.generate(Parser.parserFilesToMap(filepath1),
+                Parser.parserFilesToMap(filepath2)));
         System.out.println(diffResult);
         return 0;
     }
