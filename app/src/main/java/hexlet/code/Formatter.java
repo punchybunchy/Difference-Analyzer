@@ -1,12 +1,18 @@
 package hexlet.code;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import hexlet.code.formatters.Plain;
+import hexlet.code.formatters.Stylish;
+
+import java.util.Map;
 
 public class Formatter {
-    public static <T> String formatToStylish(List<T> resultList) {
-        return resultList.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining("\n  ", "{\n  ", "\n}"));
+    public static String formatSelection(String formatName, Map<String, Object> resultMap) {
+        String formatedResult = "";
+        if (formatName.equals("stylish")) {
+            formatedResult = Stylish.getStylishFormat(resultMap);
+        } else if (formatName.equals("plain")) {
+            formatedResult = Plain.getPlainFormat(resultMap);
+        }
+        return formatedResult;
     }
 }

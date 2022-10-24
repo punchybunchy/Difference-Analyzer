@@ -3,7 +3,7 @@ package hexlet.code;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.List;
+//import java.util.List;
 //import java.util.Map;
 
 
@@ -47,59 +47,33 @@ public class AppTest {
         System.out.println("testWrongExtensionFileThrowException ENDS");
     }
 
-//    @Test
-//    public void testParserFilesToMap() throws Exception {
-//        Map<String, Object> expected = Map.of(
-//                "firstName", "Иван",
-//                "lastName", "Иванов",
-//                "address", Map.of("дом",10,"квартира", 101, "улица","Московское ш."),
-//                "city", "Санкт-Петербург",
-//                "postalCode", 101101);
-//        var actual = Parser.parserFilesToMap(filepath1);
-//        assertThat(actual).isEqualTo(expected);
-//        System.out.println("testParserFilesToMap ENDS");
-//    }
-
     @Test
-    public void testDiffGenerate() throws Exception {
-        List<String> expected = List.of(
-                "- address: {улица=Московское ш., дом=10, квартира=101}",
-                "+ address: {улица=Шкиперский проток, дом=20, квартира=101}",
-                "  city: Санкт-Петербург",
-                "  firstName: Иван",
-                "- lastName: Иванов",
-                "+ lastName: Ванов",
-                "+ phone: 79119223344",
-                "- postalCode: 101101"
-                );
+    public void testStylishDiff() throws Exception {
+        String formatName = "stylish";
+        String expected = "{\n"
+                + "  - address: {улица=Московское ш., дом=10, квартира=101}\n"
+                + "  + address: {улица=Шкиперский проток, дом=20, квартира=101}\n"
+                + "    city: Санкт-Петербург\n"
+                + "    firstName: Иван\n"
+                + "  - lastName: Иванов\n"
+                + "  + lastName: Ванов\n"
+                + "  + phone: 79119223344\n"
+                + "  - postalCode: 101101\n"
+                + "}";
 
-        var actual = Differ.generate(Parser.parserFilesToMap(filepath1), Parser.parserFilesToMap(filepath2));
+        var actual = Differ.generate(filepath1, filepath2, formatName);
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    public void testFormatter() {
-        List<String> actualList = List.of(
-                "- address: {улица=Московское ш., дом=10, квартира=101}",
-                "+ address: {улица=Шкиперский проток, дом=20, квартира=101}",
-                "  city: Санкт-Петербург",
-                "  firstName: Иван",
-                "- lastName: Иванов",
-                "+ lastName: Ванов",
-                "+ phone: 79119223344",
-                "- postalCode: 101101"
-        );
-        String expected = "{\n  "
-                + "- address: {улица=Московское ш., дом=10, квартира=101}\n  "
-                + "+ address: {улица=Шкиперский проток, дом=20, квартира=101}\n  "
-                + "  city: Санкт-Петербург\n  "
-                + "  firstName: Иван\n  "
-                + "- lastName: Иванов\n  "
-                + "+ lastName: Ванов\n  "
-                + "+ phone: 79119223344\n  "
-                + "- postalCode: 101101\n"
-                + "}";
-        var actual = Formatter.formatToStylish(actualList);
+    public void testPlainDiff() throws Exception {
+        String formatName = "plain";
+        String expected = "Property 'address' was updated. From [complex value] to [complex value]\n"
+                + "Property 'lastName' was updated. From 'Иванов' to 'Ванов'\n"
+                + "Property 'phone' was added with value: 79119223344\n"
+                + "Property 'postalCode' was removed\n";
+
+        var actual = Differ.generate(filepath1, filepath2, formatName);
         assertThat(actual).isEqualTo(expected);
     }
 }

@@ -17,17 +17,17 @@ public final class App implements Callable<Integer> {
     @Option(names = { "-f", "--format" }, paramLabel = "format",
             defaultValue = "stylish",
             description = "output format [default: stylish]")
-    private String format;
+    private String formatName;
 
     @Parameters(paramLabel = "filepath1",
             defaultValue = "./src/main/resources/file3.yaml",
             description = "path to first file")
-    private String filepath1;
+    private String filePath1;
 
     @Parameters(paramLabel = "filepath2",
             defaultValue = "./src/main/resources/file4.yaml",
             description = "path to second file")
-    private String filepath2;
+    private String filePath2;
 
     public App() {
     }
@@ -39,8 +39,7 @@ public final class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
 
-        String diffResult = Formatter.formatToStylish(Differ.generate(Parser.parserFilesToMap(filepath1),
-                Parser.parserFilesToMap(filepath2)));
+        String diffResult = Differ.generate(filePath1, filePath2, formatName);
         System.out.println(diffResult);
         return 0;
     }
