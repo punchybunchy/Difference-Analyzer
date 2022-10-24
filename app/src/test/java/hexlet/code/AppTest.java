@@ -2,11 +2,6 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
-
-//import java.util.List;
-//import java.util.Map;
-
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
@@ -50,16 +45,17 @@ public class AppTest {
     @Test
     public void testStylishDiff() throws Exception {
         String formatName = "stylish";
-        String expected = "{\n"
-                + "  - address: {улица=Московское ш., дом=10, квартира=101}\n"
-                + "  + address: {улица=Шкиперский проток, дом=20, квартира=101}\n"
-                + "    city: Санкт-Петербург\n"
-                + "    firstName: Иван\n"
-                + "  - lastName: Иванов\n"
-                + "  + lastName: Ванов\n"
-                + "  + phone: 79119223344\n"
-                + "  - postalCode: 101101\n"
-                + "}";
+        String expected = """
+                {
+                  - address: {улица=Московское ш., дом=10, квартира=101}
+                  + address: {улица=Шкиперский проток, дом=20, квартира=101}
+                    city: Санкт-Петербург
+                    firstName: Иван
+                  - lastName: Иванов
+                  + lastName: Ванов
+                  + phone: 79119223344
+                  - postalCode: 101101
+                }""";
 
         var actual = Differ.generate(filepath1, filepath2, formatName);
         assertThat(actual).isEqualTo(expected);
@@ -68,10 +64,12 @@ public class AppTest {
     @Test
     public void testPlainDiff() throws Exception {
         String formatName = "plain";
-        String expected = "Property 'address' was updated. From [complex value] to [complex value]\n"
-                + "Property 'lastName' was updated. From 'Иванов' to 'Ванов'\n"
-                + "Property 'phone' was added with value: 79119223344\n"
-                + "Property 'postalCode' was removed\n";
+        String expected = """
+                Property 'address' was updated. From [complex value] to [complex value]
+                Property 'lastName' was updated. From 'Иванов' to 'Ванов'
+                Property 'phone' was added with value: 79119223344
+                Property 'postalCode' was removed
+                """;
 
         var actual = Differ.generate(filepath1, filepath2, formatName);
         assertThat(actual).isEqualTo(expected);
