@@ -19,14 +19,14 @@ public class Parser {
             throw new Exception("File exists, but has not valid extension");
         } else if (Files.exists(path)) {
             if (Files.isRegularFile(path)) {
-                System.out.println("File exists!");
+                System.out.printf("File %s exists!\n", path.getFileName().toString());
                 return true;
             }
             if (Files.isDirectory(path)) {
-                System.out.println("File exists, but it is a directory.");
+                System.out.printf("File %s exists, but it is a directory.\n", path.getFileName().toString());
             }
         } else {
-            System.out.println("File doesn't exist");
+            System.out.printf("File %s doesn't exist\n", path.getFileName().toString());
         }
         throw new Exception("File doesn't exist");
     }

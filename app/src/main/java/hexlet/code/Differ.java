@@ -13,31 +13,31 @@ public class Differ {
         final String removedItemPref = "-- ";
         final String addedItemPref = "++ ";
 
-        Map<String, Object> unitedMap = new TreeMap<>();
-        Map<String, Object> resultMap = new LinkedHashMap<>();
+        Map<String, Object> unitedTempMap = new TreeMap<>();
+        Map<String, Object> diffResultMap = new LinkedHashMap<>();
 
         Map<String, Object> map1 = Parser.parserFilesToMap(filePath1);
         Map<String, Object> map2 = Parser.parserFilesToMap(filePath2);
 
-        unitedMap.putAll(map1);
-        unitedMap.putAll(map2);
+        unitedTempMap.putAll(map1);
+        unitedTempMap.putAll(map2);
 
-        for (String key : unitedMap.keySet()) {
+        for (String key : unitedTempMap.keySet()) {
             if (map1.containsKey(key) && map2.containsKey(key)) {
                 if (map1.get(key).equals(map2.get(key))) {
-                    resultMap.put(notChangedItemPref + key, map1.get(key));
+                    diffResultMap.put(notChangedItemPref + key, map1.get(key));
                 } else {
-                    resultMap.put(changedOldItemPref + key, map1.get(key));
-                    resultMap.put(changedNewItemPref + key, map2.get(key));
+                    diffResultMap.put(changedOldItemPref + key, map1.get(key));
+                    diffResultMap.put(changedNewItemPref + key, map2.get(key));
                 }
             } else if (map1.containsKey(key) && !map2.containsKey(key)) {
-                resultMap.put(removedItemPref + key, map1.get(key));
+                diffResultMap.put(removedItemPref + key, map1.get(key));
             } else {
-                resultMap.put(addedItemPref + key, map2.get(key));
+                diffResultMap.put(addedItemPref + key, map2.get(key));
             }
         }
 
-        String result = Formatter.formatSelection(formatName, resultMap);
+        String result = Formatter.formatSelection(formatName, diffResultMap);
         return result;
     }
 }

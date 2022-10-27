@@ -74,4 +74,21 @@ public class AppTest {
         var actual = Differ.generate(filepath1, filepath2, formatName);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    public void testJsonDiff() throws Exception {
+        String formatName = "json";
+        String expected = ""
+                + "{\"- address\":{\"улица\":\"Московское ш.\",\"дом\":10,\"квартира\":101},"
+                + "\"+ address\":{\"улица\":\"Шкиперский проток\",\"дом\":20,\"квартира\":101},"
+                + "\"* city\":\"Санкт-Петербург\","
+                + "\"* firstName\":\"Иван\","
+                + "\"- lastName\":\"Иванов\","
+                + "\"+ lastName\":\"Ванов\","
+                + "\"++ phone\":79119223344,"
+                + "\"-- postalCode\":101101}";
+
+        var actual = Differ.generate(filepath1, filepath2, formatName);
+        assertThat(actual).isEqualTo(expected);
+    }
 }

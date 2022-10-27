@@ -15,7 +15,7 @@ import java.util.concurrent.Callable;
 public final class App implements Callable<Integer> {
 
     @Option(names = { "-f", "--format" }, paramLabel = "format",
-            defaultValue = "stylish",
+            defaultValue = "json",
             description = "output format [default: stylish]")
     private String formatName;
 

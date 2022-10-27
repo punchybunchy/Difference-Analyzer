@@ -4,7 +4,7 @@ import java.util.Map;
 
 
 public class Stylish {
-    public static String getStylishFormat(Map<String, Object> resultMap) {
+    public static String getStylishFormat(Map<String, Object> diffResultMap) {
 
         final String notChangedItemPref = "* ";
         final String changedOldItemPref = "- ";
@@ -15,27 +15,27 @@ public class Stylish {
         StringBuilder str = new StringBuilder();
         String result;
 
-        for (String key : resultMap.keySet()) {
+        for (String key : diffResultMap.keySet()) {
             if (key.startsWith(notChangedItemPref)) {
                 str.append("    ")
                         .append(key.substring(notChangedItemPref.length()))
-                        .append(": ").append(resultMap.get(key)).append("\n");
+                        .append(": ").append(diffResultMap.get(key)).append("\n");
             } else if (key.startsWith(changedOldItemPref)) {
                 str.append("  - ")
                         .append(key.substring(changedOldItemPref.length()))
-                        .append(": ").append(resultMap.get(key)).append("\n");
+                        .append(": ").append(diffResultMap.get(key)).append("\n");
             } else if (key.startsWith(changedNewItemPref)) {
                 str.append("  + ")
                         .append(key.substring(changedNewItemPref.length()))
-                        .append(": ").append(resultMap.get(key)).append("\n");
+                        .append(": ").append(diffResultMap.get(key)).append("\n");
             } else if (key.startsWith(removedItemPref)) {
                 str.append("  - ")
                         .append(key.substring(removedItemPref.length()))
-                        .append(": ").append(resultMap.get(key)).append("\n");
+                        .append(": ").append(diffResultMap.get(key)).append("\n");
             } else if (key.startsWith(addedItemPref)) {
                 str.append("  + ")
                         .append(key.substring(addedItemPref.length()))
-                        .append(": ").append(resultMap.get(key)).append("\n");
+                        .append(": ").append(diffResultMap.get(key)).append("\n");
             }
         }
         str.insert(0, "{\n")
