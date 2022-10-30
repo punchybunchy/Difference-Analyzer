@@ -37,7 +37,11 @@ public class Differ {
             }
         }
 
-        String result = Formatter.formatSelection(formatName, diffResultMap);
-        return result;
+        return Formatter.formatSelection(formatName, diffResultMap);
+    }
+
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        String defaultFormatName = "stylish";
+        return generate(filePath1, filePath2, defaultFormatName);
     }
 }
