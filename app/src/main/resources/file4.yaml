@@ -1,10 +1,11 @@
 setting1 : "Another value"
 setting2 : [300, 400]
 setting3 : "none"
-key2 : "value2"
+key2 : value2
 id : error
-checked : true
-chars2 : false
+checked : null
+chars2 : "any symbols"
 obj1 : 
    nestedKey : "value"
    isNested : true
+obj2 : {somekey : "some value", anotherkey : "another value"}

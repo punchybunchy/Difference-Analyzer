@@ -4,29 +4,26 @@ import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
-import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    public static String formatSelection(String formatName, Map<String, Object> diffResultMap) throws IOException {
+    public static String formatSelection(String formatName, List<Map<String, Object>> resultList) throws Exception {
 
-        String formatedResult = "";
-        final String formatStylish = "stylish";
-        final String formatPlain = "plain";
-        final String formatJson = "json";
+        String formattedResult;
 
         switch (formatName) {
-            case (formatStylish) -> {
-                formatedResult = Stylish.getStylishFormat(diffResultMap);
+            case ("stylish") -> {
+                formattedResult = Stylish.getStylishFormat(resultList);
             }
-            case (formatPlain) -> {
-                formatedResult = Plain.getPlainFormat(diffResultMap);
+            case ("plain") -> {
+                formattedResult = Plain.getPlainFormat(resultList);
             }
-            case (formatJson) -> {
-                formatedResult = Json.getJsonFormat(diffResultMap);
+            case ("json") -> {
+                formattedResult = Json.getJsonFormat(resultList);
             }
-            default -> System.out.println("Please retry and input correct format");
+            default -> throw new Exception("Not valid format: " + formatName);
         }
-        return formatedResult;
+        return formattedResult;
     }
 }

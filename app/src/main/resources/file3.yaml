@@ -3,6 +3,6 @@ setting2 : [200, 300, 400]
 setting3 : true
 key1 : value1
 id : 45
-default : null
+default : someValue
 checked : false
 obj1 : {nestedKey : "big_value", isNested : false}

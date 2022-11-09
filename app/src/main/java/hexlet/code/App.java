@@ -20,12 +20,12 @@ public final class App implements Callable<Integer> {
     private String formatName;
 
     @Parameters(paramLabel = "filepath1",
-            defaultValue = "./src/main/resources/file3.yaml",
+//            defaultValue = "./src/test/resources/yaml_file1.yaml",
             description = "path to first file")
     private String filePath1;
 
     @Parameters(paramLabel = "filepath2",
-            defaultValue = "./src/main/resources/file4.yaml",
+//            defaultValue = "./src/test/resources/yaml_file2.yaml",
             description = "path to second file")
     private String filePath2;
 
