@@ -7,13 +7,11 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import static hexlet.code.MapsComparer.getMapsCompare;
+import static hexlet.code.MapsComparison.getMapsComparing;
 
 public class Differ {
 
     public static String generate(String inputPath1, String inputPath2, String formatName) throws Exception {
-
-        List<Map<String, Object>> resultList;
 
         Path filePath1 = getAbsolutePath(inputPath1);
         Path filePath2 = getAbsolutePath(inputPath2);
@@ -27,7 +25,7 @@ public class Differ {
         Map<String, Object> map1 = Parser.parsingToMap(dataFromFile1, fileExtension1);
         Map<String, Object> map2 = Parser.parsingToMap(dataFromFile2, fileExtension2);
 
-        resultList = getMapsCompare(map1, map2);
+        List<Map<String, Object>> resultList = getMapsComparing(map1, map2);
         return Formatter.formatSelection(formatName, resultList);
     }
 

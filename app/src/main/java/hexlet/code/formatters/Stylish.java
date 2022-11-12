@@ -8,7 +8,7 @@ public class Stylish {
     public static String getStylishFormat(List<Map<String, Object>> resultList) {
 
         StringBuilder str = new StringBuilder();
-        String result;
+        String result = "";
 
         for (Map<String, Object> element : resultList) {
             String key = element.get("key").toString();

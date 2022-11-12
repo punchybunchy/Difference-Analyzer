@@ -1,0 +1,15 @@
+{
+  - active: true
+  - formed: 2016
+  + formed: 2022
+  - homeTown: Metro City
+  + homeTown: Moscow City
+  - members: {name=Molecule Man, age=29, secretIdentity=Dan Jukes}
+  + members: {name=Who, age=70, secretIdentity=Peesz Duke}
+    powers: [Radiation resistance, Turning tiny, Radiation blast]
+  + reserved: false
+  - secretBase: Super tower
+  + secretBase: Bunker
+  - squadName: Super hero squad
+  + squadName: Bastards
+}

@@ -1,0 +1,7 @@
+Property 'active' was removed
+Property 'formed' was updated. From 2016 to 2022
+Property 'homeTown' was updated. From 'Metro City' to 'Moscow City'
+Property 'members' was updated. From [complex value] to [complex value]
+Property 'reserved' was added with value: false
+Property 'secretBase' was updated. From 'Super tower' to 'Bunker'
+Property 'squadName' was updated. From 'Super hero squad' to 'Bastards'

@@ -4,28 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 
-public class MapsComparer {
+public class MapsComparison {
 
-    public static List<Map<String, Object>> getMapsCompare(Map<String, Object> map1, Map<String, Object> map2) {
-        Map<String, Object> unitedTreeMap = new TreeMap<>();
+    public static List<Map<String, Object>> getMapsComparing(Map<String, Object> map1, Map<String, Object> map2) {
+        Set<String> keys = new TreeSet<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
 
-        unitedTreeMap.putAll(map1);
-        unitedTreeMap.putAll(map2);
+        keys.addAll(map1.keySet());
+        keys.addAll(map2.keySet());
 
-        for (String key : unitedTreeMap.keySet()) {
-            if (map1.containsKey(key) && map2.containsKey(key)) {
-                if (map1.get(key).equals(map2.get(key))) {
-                    resultList.add(getMapChange(key, "UNCHANGED", map1.get(key)));
-                } else {
-                    resultList.add(getMapChange(key, "CHANGED", map1.get(key), map2.get(key)));
-                }
-            } else if (map1.containsKey(key) && !map2.containsKey(key)) {
-                resultList.add(getMapChange(key, "DELETED", map1.get(key)));
-            } else {
+        for (String key: keys) {
+            if (!map1.containsKey(key)) {
                 resultList.add(getMapChange(key, "ADDED", map2.get(key)));
+            } else if (!map2.containsKey(key)) {
+                resultList.add(getMapChange(key, "DELETED", map1.get(key)));
+            } else if (!map1.get(key).equals(map2.get(key))) {
+                resultList.add(getMapChange(key, "CHANGED", map1.get(key), map2.get(key)));
+            } else {
+                resultList.add(getMapChange(key, "UNCHANGED", map1.get(key)));
             }
         }
         return resultList;
