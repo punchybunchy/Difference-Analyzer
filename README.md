@@ -7,7 +7,6 @@
 
 ## Application allows to compare two documents (JSON or YAML formats) and get the difference between them.
  
-```sh
 
 ## Setup
 ```sh
