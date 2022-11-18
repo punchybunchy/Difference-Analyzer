@@ -3,7 +3,7 @@ package hexlet.code;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-//import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,7 +35,7 @@ public class AppTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"json", "yaml"})
+    @ValueSource(strings = {"json", "yml"})
     public final void generateTest(String format) throws Exception {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
@@ -47,7 +47,7 @@ public class AppTest {
         assertThat(Differ.generate(filePath1, filePath2, "plain"))
                 .isEqualTo(resultPlain);
 
-//        String actualJson = Differ.generate(filePath1, filePath2, "json");
-//        JSONAssert.assertEquals(resultJson, actualJson, false);
+        String actualJson = Differ.generate(filePath1, filePath2, "json");
+        JSONAssert.assertEquals(resultJson, actualJson, false);
     }
 }
