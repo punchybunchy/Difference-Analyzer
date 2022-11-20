@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -21,7 +22,7 @@ public class MapsComparison {
                 resultList.add(getMapChange(key, "ADDED", map2.get(key)));
             } else if (!map2.containsKey(key)) {
                 resultList.add(getMapChange(key, "DELETED", map1.get(key)));
-            } else if (!map1.get(key).equals(map2.get(key))) {
+            } else if (!Objects.equals(map1.get(key), map2.get(key))) {
                 resultList.add(getMapChange(key, "CHANGED", map1.get(key), map2.get(key)));
             } else {
                 resultList.add(getMapChange(key, "UNCHANGED", map1.get(key)));
