@@ -1,1 +1,13 @@
-{"squadName":"Bastards","homeTown":"Moscow City","formed":2022,"secretBase":"Bunker","reserved":false,"members":{"name":"Who","age":70,"secretIdentity":"Peesz Duke"},"powers":["Radiation resistance","Turning tiny","Radiation blast"]}
+squadName: Bastards
+homeTown: Moscow City
+formed: 2022
+secretBase: Bunker
+reserved: false
+members:
+    name: Who
+    age: 70
+    secretIdentity: Peesz Duke
+powers:
+  - Radiation resistance
+  - Turning tiny
+  - Radiation blast

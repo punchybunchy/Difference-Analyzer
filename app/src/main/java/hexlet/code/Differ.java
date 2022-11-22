@@ -25,8 +25,8 @@ public class Differ {
         Map<String, Object> map1 = Parser.parsingToMap(dataFromFile1, fileExtension1);
         Map<String, Object> map2 = Parser.parsingToMap(dataFromFile2, fileExtension2);
 
-        List<Map<String, Object>> resultList = getMapsComparing(map1, map2);
-        return Formatter.formatSelection(formatName, resultList);
+        List<Map<String, Object>> resultOfComparing = getMapsComparing(map1, map2);
+        return Formatter.formatSelection(formatName, resultOfComparing);
     }
 
     public static String generate(String filePath1, String filePath2) throws Exception {
